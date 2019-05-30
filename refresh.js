@@ -2,9 +2,10 @@ const request = require('request');
 
 const client_id = process.argv[2];
 const refresh_token = process.argv[3];
+const access_token = process.argv[4];
 
-if (!client_id || !refresh_token) {
-  console.error('Please pass your client ID and refresh token (in that order) as arguments to this script');
+if (!client_id || !refresh_token || !access_token) {
+  console.error('Please pass your client ID, refresh token and access_token (in that order) as arguments to this script');
   process.exit(1);
 }
 
@@ -14,7 +15,8 @@ return request({
   json: {
     grant_type: 'refresh_token',
     client_id,
-    refresh_token
+    refresh_token,
+    access_token
   }
 }, (error, {statusCode, body}) => {
   if (error) {
