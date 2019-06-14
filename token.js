@@ -27,7 +27,7 @@ return request({
     'Content-Type': 'application/x-www-form-urlencoded'
   },
   body: formData
-}, (error, {statusCode, body}) => {
+}, (error, {statusCode = 500, body = 'default error'}) => {
   if (error) {
     console.error(error);
     return process.exit(1);

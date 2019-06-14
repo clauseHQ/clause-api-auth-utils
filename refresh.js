@@ -18,7 +18,7 @@ return request({
     refresh_token,
     access_token
   }
-}, (error, {statusCode, body}) => {
+}, (error, {statusCode=500, body='default error'}) => {
   if (error) {
     console.error(error);
     return process.exit(1);
