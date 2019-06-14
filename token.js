@@ -27,14 +27,9 @@ return request({
     'Content-Type': 'application/x-www-form-urlencoded'
   },
   body: formData
-}, (error, {statusCode = 500, body = 'default error'}) => {
-  if (error) {
-    console.error(error);
-    return process.exit(1);
-  }
-
+}, (error, {statusCode = 500, body = null}) => {
   if (statusCode < 200 || statusCode > 299) {
-    console.error(JSON.parse(body));
+    console.error(body ? JSON.parse(body) : error);
     return process.exit(1);
   }
 

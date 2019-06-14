@@ -18,14 +18,9 @@ return request({
     refresh_token,
     access_token
   }
-}, (error, {statusCode=500, body='default error'}) => {
-  if (error) {
-    console.error(error);
-    return process.exit(1);
-  }
-
+}, (error, {statusCode=500, body=null}) => {
   if (statusCode < 200 || statusCode > 299) {
-    console.error(body);
+    console.error(body || error);
     return process.exit(1);
   }
 
